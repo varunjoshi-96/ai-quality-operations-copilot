@@ -18,3 +18,15 @@ def test_standard_ticket_contract() -> None:
     result = classify_ticket("Customer asks for an order status update")
     assert result.classification == "standard_review"
     assert result.evidence_step == "SOP-01"
+
+
+def test_empty_ticket_rejected():
+    with pytest.raises(ValueError):
+        classify_ticket("")
+
+def test_empty_ticket_rejected():
+    try:
+        classify_ticket("")
+    except ValueError:
+        return
+    raise AssertionError("Empty ticket should raise ValueError")
